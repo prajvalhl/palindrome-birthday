@@ -1,3 +1,3 @@
-# is your birthday palindrome?
+# Test if your Birthdate is Palindrome
 
-### This app takes in your birthday as input and returns if your birthdate is palindrome or not along with the closest palindrome date. ⚠️ under development.
+### This responsive app takes in your birthday as input and tell you if your birthdate is palindrome or if not it'll tell you the closest palindrome date.
