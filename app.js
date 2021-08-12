@@ -1,3 +1,5 @@
+// ALL LOGICAL CHUNCKS NEEDED FOR THE APP TO WORK
+
 // function which reverses the string
 const reverseStr = (str) => {
   return str.split("").reverse().join("");
@@ -7,12 +9,6 @@ const reverseStr = (str) => {
 const isPalindrome = (str) => {
   const reverse = reverseStr(str);
   return reverse === str;
-};
-
-const date = {
-  day: 2,
-  month: 2,
-  year: 2020,
 };
 
 // function which converts date to string
@@ -48,7 +44,7 @@ const getAllDateFormats = (date) => {
   const mmddyyyy = `${dateStr.month}${dateStr.day}${dateStr.year}`;
   const yyyymmdd = `${dateStr.year}${dateStr.month}${dateStr.day}`;
   const ddmmyy = `${dateStr.day}${dateStr.month}${dateStr.year.slice(-2)}`;
-  const mmddyy = `${dateStr.month}${dateStr.year}${dateStr.year.slice(-2)}`;
+  const mmddyy = `${dateStr.month}${dateStr.day}${dateStr.year.slice(-2)}`;
   const yymmdd = `${dateStr.year.slice(-2)}${dateStr.month}${dateStr.day}`;
 
   return [ddmmyyyy, mmddyyyy, yyyymmdd, ddmmyy, mmddyy, yymmdd];
@@ -187,18 +183,40 @@ const getPreviousPalindromeDate = (date) => {
 const findNearestPalindromeDate = (date) => {
   const [fCount, futureDate] = getNextPalindromeDate(date);
   const [pCount, pastDate] = getPreviousPalindromeDate(date);
-  console.log(fCount, pCount);
   if (fCount < pCount) {
-    return futureDate;
+    return [fCount, futureDate];
   } else {
-    return pastDate;
+    return [pCount, pastDate];
   }
 };
 
+// MAIN PROGRAM STARTS FROM HERE
 const dateInputRef = document.querySelector("#input-date");
 const btnRef = document.querySelector("#btn-check");
 const outputRef = document.querySelector("#output");
 
-const handleClick = (e) => console.log(dateInputRef.value);
+const handleClick = (e) => {
+  const bdayStr = dateInputRef.value;
+
+  if (bdayStr !== "") {
+    const dateList = bdayStr.split("-");
+
+    const date = {
+      day: Number(dateList[2]),
+      month: Number(dateList[1]),
+      year: Number(dateList[0]),
+    };
+
+    // check if its palindrome
+    if (checkPalindromeForAllDateFormats(date)) {
+      outputRef.innerText = "Yay! Your birthdate is Palindrome! 🎉";
+    } else {
+      const [noOfDays, nextDate] = findNearestPalindromeDate(date);
+      outputRef.innerText = `Oops! Your birthdate is not Palindrome! The nearest Palindrome date to your birthdate is ${nextDate.day}-${nextDate.month}-${nextDate.year}. You missed by ${noOfDays} days. 😞`;
+    }
+  } else {
+    outputRef.innerText = "Invalid Input! Please Try Again!";
+  }
+};
 
 btnRef.addEventListener("click", handleClick);
