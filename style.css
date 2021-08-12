@@ -1,14 +1,18 @@
 @import url("https://fonts.googleapis.com/css2?family=Montserrat&display=swap");
 
-#content-main {
-  text-align: center;
-  margin: 0 auto;
-  font-family: "Montserrat", sans-serif;
+body {
+  margin: 0;
   background: linear-gradient(
     62deg,
     rgb(21, 213, 235) 0%,
     rgb(255, 0, 191) 100%
   );
+}
+
+#content-main {
+  text-align: center;
+  margin: 0 auto;
+  font-family: "Montserrat", sans-serif;
   padding: 1rem;
   max-width: 60%;
 }
@@ -76,9 +80,5 @@ footer p {
 @media (max-width: 700px) {
   #content-main {
     max-width: 100%;
-  }
-
-  body {
-    margin: 0;
   }
 }
