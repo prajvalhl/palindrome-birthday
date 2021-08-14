@@ -59,6 +59,7 @@ footer {
 footer p {
   max-width: 80%;
   margin: auto;
+  text-align: justify;
   padding: 1rem 0rem;
 }
 
